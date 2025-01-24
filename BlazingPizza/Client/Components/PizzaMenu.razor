@@ -1,0 +1,36 @@
+﻿@using BlazingPizza.Shared.Models
+@* PizzaMenu Component *@
+<h3>Pizza Menu</h3>
+
+<div class="pizza-menu">
+    @if (pizzas == null || !pizzas.Any())
+    {
+        <p>Loading pizzas...</p>
+    }
+    else
+    {
+        <ul>
+            @foreach (var pizza in pizzas)
+            {
+                <li>
+                    <div class="pizza-item">
+                        <img src="@pizza.ImageUrl" alt="@pizza.Name" />
+                        <h4>@pizza.Name</h4>
+                        <p>@pizza.Description</p>
+                        <p><strong>Price:</strong> $@pizza.Price</p>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+</div>
+
+@code {
+    private List<Pizza>? pizzas;
+
+    protected override void OnInitialized()
+    {
+        // Load pizzas from PizzaService (static data for now)
+        pizzas = BlazingPizza.Shared.PizzaService.GetPizzas();
+    }
+}
