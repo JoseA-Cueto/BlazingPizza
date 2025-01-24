@@ -31,5 +31,6 @@ Follow these steps to run the project locally:
    cd BlazingPizza
 
  2.  Build and run the project:
+  ```bash
     dotnet run
 
