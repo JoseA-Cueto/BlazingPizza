@@ -42,7 +42,7 @@ namespace BlazingPizza.Shared
                     Id = 4,
                     Name = "Veggie",
                     Description = "A healthy choice with fresh veggies.",
-                    Price = 7.99m,
+                    Price = 8.99m,
                     ImageUrl = "https://via.placeholder.com/150"
                 }
             };
