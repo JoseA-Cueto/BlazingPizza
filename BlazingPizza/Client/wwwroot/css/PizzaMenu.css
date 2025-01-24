@@ -4,7 +4,9 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 300px es el tamaño mínimo */
     gap: 20px;
     padding: 20px;
-    background-color: #f9f9f9; /* Fondo suave */
+    background: linear-gradient(to top, #f39c12, #f1c40f); /* Fondo degradado */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor del contenedor */
 }
 
 /* Each individual pizza card */
@@ -60,14 +62,14 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fafafa; /* Fondo claro para la página */
+    background: linear-gradient(to top, #f39c12, #f1c40f); /* Degradado de naranja */
 }
 
 h3 {
     text-align: center;
     font-size: 2em;
     margin-top: 20px;
-    color: #2c3e50; /* Color profesional */
+    color: #2c3e50; /* Color de texto profesional */
 }
 
 /* Responsive adjustments */
