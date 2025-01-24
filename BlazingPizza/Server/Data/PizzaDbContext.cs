@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using BlazingPizza.Server.Models;
+using BlazingPizza.Shared.Models;
 using System.Collections.Generic;
 
 namespace BlazingPizza.Server.Data

@@ -1,20 +1,31 @@
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.EntityFrameworkCore;
 using BlazingPizza.Server.Data;
+using BlazingPizza.Server.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar el contexto de la base de datos desde User Secrets
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddDbContext<PizzaDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PizzaDb"))
-);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PizzaDb")));
+
+builder.Services.AddScoped<PizzaService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configurar el pipeline de solicitudes HTTP
+app.UseCors("AllowAll"); // Habilitar CORS
+
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
@@ -31,8 +42,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.MapRazorPages();
-app.MapControllers();
+app.MapControllers(); // Mapear los controladores de la API
 app.MapFallbackToFile("index.html");
 
 app.Run();
+
+
 
