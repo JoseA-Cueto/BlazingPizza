@@ -29,8 +29,10 @@ Follow these steps to run the project locally:
    ```bash
    https://github.com/JoseA-Cueto/BlazingPizza.git
    cd BlazingPizza
-
- 2.  Build and run the project:
+ 2.  Build Database:
+  ```bash
+    update-database
+ 3.  Build and run the project:
   ```bash
     dotnet run
 
