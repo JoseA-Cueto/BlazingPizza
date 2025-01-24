@@ -11,19 +11,15 @@
     }
     else
     {
-        <ul>
-            @foreach (var pizza in pizzas)
-            {
-                <li>
-                    <div class="pizza-item">
-                        <img src="@pizza.ImageUrl" alt="@pizza.Name" />
-                        <h4>@pizza.Name</h4>
-                        <p>@pizza.Description</p>
-                        <p><strong>Price:</strong> $@pizza.Price</p>
-                    </div>
-                </li>
-            }
-        </ul>
+        @foreach (var pizza in pizzas)
+        {
+            <div class="pizza-item">
+                <img src="@pizza.ImageUrl" alt="@pizza.Name" />
+                <h4>@pizza.Name</h4>
+                <p>@pizza.Description</p>
+                <p><strong>Price:</strong> $@pizza.Price</p>
+            </div>
+        }
     }
 </div>
 
@@ -34,7 +30,7 @@
     {
         try
         {
-            // Obtener pizzas desde la API
+            // Llamamos al endpoint '/api/pizza' en el controlador para obtener las pizzas
             pizzas = await HttpClient.GetFromJsonAsync<List<Pizza>>("api/pizza");
         }
         catch (Exception ex)
@@ -43,6 +39,7 @@
         }
     }
 }
+
 
 
 

@@ -1,20 +1,21 @@
 ﻿/* General container for the pizza menu */
 .pizza-menu {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 300px es el tamaño mínimo */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Tamaño mínimo 280px para que las tarjetas no se estiren */
     gap: 20px;
     padding: 20px;
     background: linear-gradient(to top, #f39c12, #f1c40f); /* Fondo degradado */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor del contenedor */
+    margin-top: 30px;
 }
 
 /* Each individual pizza card */
 .pizza-item {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Esquinas más redondeadas para un estilo moderno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
@@ -22,17 +23,19 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
 }
 
+    /* Hover effect */
     .pizza-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px); /* Levanta ligeramente la tarjeta */
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
     }
 
     /* Pizza image */
     .pizza-item img {
         width: 100%;
-        height: 200px; /* Ajustamos el tamaño de las imágenes */
+        height: 200px; /* Mantenemos la altura fija para las imágenes */
         object-fit: cover;
         border-bottom: 1px solid #ddd;
     }
@@ -65,9 +68,10 @@ body {
     background: linear-gradient(to top, #f39c12, #f1c40f); /* Degradado de naranja */
 }
 
+/* Header */
 h3 {
     text-align: center;
-    font-size: 2em;
+    font-size: 2.5em;
     margin-top: 20px;
     color: #2c3e50; /* Color de texto profesional */
 }
@@ -79,6 +83,6 @@ h3 {
     }
 
     .pizza-item img {
-        height: 180px; /* Ajustamos un poco la altura para que se vea bien en dispositivos pequeños */
+        height: 180px; /* Ajustamos la altura de la imagen en dispositivos pequeños */
     }
 }
