@@ -24,7 +24,7 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-app.UseCors("AllowAll"); // Habilitar CORS
+app.UseCors("AllowAll"); 
 
 if (app.Environment.IsDevelopment())
 {
