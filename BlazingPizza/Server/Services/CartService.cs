@@ -15,7 +15,7 @@ namespace BlazingPizza.Server.Services
 
             if (existingItem != null)
             {
-                existingItem.Quantity += quantity; // Si ya existe, aumenta la cantidad
+                existingItem.Quantity += quantity; 
             }
             else
             {
