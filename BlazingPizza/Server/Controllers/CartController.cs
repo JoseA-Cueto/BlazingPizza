@@ -19,8 +19,15 @@ namespace BlazingPizza.Server.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> AddToCart([FromBody] CartItem item)
         {
-            await _cartService.AddToCartAsync(item);
-            return Ok();
+            try
+            {
+                await _cartService.AddToCartAsync(item);
+                return Ok();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]

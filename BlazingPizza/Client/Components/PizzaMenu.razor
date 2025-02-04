@@ -43,14 +43,20 @@
     {
         var item = new CartItem
             {
-                PizzaId = pizza.Id,
-                PizzaName = pizza.Name,
-                Price = pizza.Price,
+                PizzaId = pizza.Id, // Solo envía el ID
                 Quantity = 1
             };
 
-        await HttpClient.PostAsJsonAsync("api/cart/add", item);
-        Console.WriteLine("¡Pizza añadida al carrito!");
+        var response = await HttpClient.PostAsJsonAsync("api/cart/add", item);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("¡Pizza añadida al carrito!");
+        }
+        else
+        {
+            Console.WriteLine($"Error: {response.StatusCode}");
+        }
     }
 }
 

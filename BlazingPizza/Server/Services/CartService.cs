@@ -16,7 +16,14 @@ namespace BlazingPizza.Server.Services
 
         public async Task AddToCartAsync(CartItem item)
         {
-            
+            // Verifica si la pizza existe
+            var pizza = await _dbContext.Pizzas.FindAsync(item.PizzaId);
+            if (pizza == null)
+            {
+                throw new ArgumentException("La pizza no existe.");
+            }
+
+            // Busca si el ítem ya está en el carrito
             var existingItem = await _dbContext.CartItems
                 .FirstOrDefaultAsync(ci => ci.PizzaId == item.PizzaId);
 
@@ -32,12 +39,12 @@ namespace BlazingPizza.Server.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<CartItem>> GetCartItemsAsync()
-        {
-            return await _dbContext.CartItems
-                .Include(ci => ci.Pizza) 
-                .ToListAsync();
-        }
+        //public async Task<List<CartItem>> GetCartItemsAsync()
+        //{
+        //    return await _dbContext.CartItems
+        //        .Include(ci => ci.Pizza) 
+        //        .ToListAsync();
+        //}
 
         public async Task RemoveFromCartAsync(int pizzaId)
         {

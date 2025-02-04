@@ -10,9 +10,6 @@ namespace BlazingPizza.Shared.Models
     {
         public int Id { get; set; }
         public int PizzaId { get; set; } 
-        public virtual Pizza Pizza { get; set; }
-        public string PizzaName { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; } = 1; 
+        public int Quantity { get; set; } = 1;
     }
 }
