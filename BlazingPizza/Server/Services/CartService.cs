@@ -1,48 +1,54 @@
-﻿// BlazingPizza.Server/Services/CartService.cs
+﻿// Server/Services/CartService.cs
+using BlazingPizza.Server.Data;
 using BlazingPizza.Shared.Models;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazingPizza.Server.Services
 {
     public class CartService
     {
-        public Cart CurrentCart { get; private set; } = new Cart();
+        private readonly PizzaDbContext _dbContext;
 
-        // Añadir pizza al carrito
-        public void AddToCart(Pizza pizza, int quantity = 1)
+        public CartService(PizzaDbContext dbContext)
         {
-            var existingItem = CurrentCart.Items.FirstOrDefault(item => item.PizzaId == pizza.Id);
+            _dbContext = dbContext;
+        }
+
+        public async Task AddToCartAsync(CartItem item)
+        {
+            // Buscar si el item ya está en el carrito
+            var existingItem = await _dbContext.CartItems
+                .FirstOrDefaultAsync(ci => ci.PizzaId == item.PizzaId);
 
             if (existingItem != null)
             {
-                existingItem.Quantity += quantity; 
+                existingItem.Quantity += item.Quantity;
             }
             else
             {
-                CurrentCart.Items.Add(new CartItem
-                {
-                    PizzaId = pizza.Id,
-                    PizzaName = pizza.Name,
-                    Price = pizza.Price,
-                    Quantity = quantity
-                });
+                _dbContext.CartItems.Add(item);
             }
+
+            await _dbContext.SaveChangesAsync();
         }
 
-        // Eliminar pizza del carrito
-        public void RemoveFromCart(int pizzaId)
+        public async Task<List<CartItem>> GetCartItemsAsync()
         {
-            var item = CurrentCart.Items.FirstOrDefault(item => item.PizzaId == pizzaId);
+            return await _dbContext.CartItems
+                .Include(ci => ci.Pizza) 
+                .ToListAsync();
+        }
+
+        public async Task RemoveFromCartAsync(int pizzaId)
+        {
+            var item = await _dbContext.CartItems
+                .FirstOrDefaultAsync(ci => ci.PizzaId == pizzaId);
+
             if (item != null)
             {
-                CurrentCart.Items.Remove(item);
+                _dbContext.CartItems.Remove(item);
+                await _dbContext.SaveChangesAsync();
             }
-        }
-
-        // Vaciar carrito
-        public void ClearCart()
-        {
-            CurrentCart.Items.Clear();
         }
     }
 }

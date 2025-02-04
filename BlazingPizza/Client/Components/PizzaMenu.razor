@@ -2,7 +2,6 @@
 @using BlazingPizza.Shared.Models
 @inject HttpClient HttpClient
 
-
 <h3>Pizza Menu</h3>
 
 <div class="pizza-menu">
@@ -19,6 +18,7 @@
                 <h4>@pizza.Name</h4>
                 <p>@pizza.Description</p>
                 <p><strong>Price:</strong> $@pizza.Price</p>
+                <button class="add-to-cart-btn" @onclick="() => AddToCart(pizza)">Añadir al Carrito</button>
             </div>
         }
     }
@@ -31,7 +31,6 @@
     {
         try
         {
-            // Llamamos al endpoint '/api/pizza' en el controlador para obtener las pizzas
             pizzas = await HttpClient.GetFromJsonAsync<List<Pizza>>("api/pizza");
         }
         catch (Exception ex)
@@ -39,8 +38,21 @@
             Console.WriteLine($"Error fetching pizzas: {ex.Message}");
         }
     }
-}
 
+    private async Task AddToCart(Pizza pizza)
+    {
+        var item = new CartItem
+            {
+                PizzaId = pizza.Id,
+                PizzaName = pizza.Name,
+                Price = pizza.Price,
+                Quantity = 1
+            };
+
+        await HttpClient.PostAsJsonAsync("api/cart/add", item);
+        Console.WriteLine("¡Pizza añadida al carrito!");
+    }
+}
 
 
 

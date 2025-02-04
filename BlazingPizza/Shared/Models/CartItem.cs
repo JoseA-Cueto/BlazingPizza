@@ -8,9 +8,11 @@ namespace BlazingPizza.Shared.Models
 {
     public class CartItem
     {
-        public int PizzaId { get; set; } // Relación con la Pizza
+        public int Id { get; set; }
+        public int PizzaId { get; set; } 
+        public virtual Pizza Pizza { get; set; }
         public string PizzaName { get; set; }
         public decimal Price { get; set; }
-        public int Quantity { get; set; } = 1; // Default: 1 unidad
+        public int Quantity { get; set; } = 1; 
     }
 }
