@@ -1,12 +1,12 @@
 ﻿/* General container for the pizza menu */
 .pizza-menu {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Tamaño mínimo 280px para que las tarjetas no se estiren */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
     gap: 20px;
     padding: 20px;
-    background: linear-gradient(to top, #f39c12, #f1c40f); /* Fondo degradado */
+    background: linear-gradient(to top, #f39c12, #f1c40f); 
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor del contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     margin-top: 30px;
 }
 
@@ -14,8 +14,8 @@
 .pizza-item {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 10px; /* Esquinas más redondeadas para un estilo moderno */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
@@ -28,14 +28,14 @@
 
     /* Hover effect */
     .pizza-item:hover {
-        transform: translateY(-5px); /* Levanta ligeramente la tarjeta */
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+        transform: translateY(-5px); 
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15); 
     }
 
     /* Pizza image */
     .pizza-item img {
         width: 100%;
-        height: 200px; /* Mantenemos la altura fija para las imágenes */
+        height: 200px; 
         object-fit: cover;
         border-bottom: 1px solid #ddd;
     }
@@ -65,7 +65,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to top, #f39c12, #f1c40f); /* Degradado de naranja */
+    background: linear-gradient(to top, #f39c12, #f1c40f); 
 }
 
 /* Header */
@@ -73,16 +73,16 @@ h3 {
     text-align: center;
     font-size: 2.5em;
     margin-top: 20px;
-    color: #2c3e50; /* Color de texto profesional */
+    color: #2c3e50; 
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .pizza-menu {
-        grid-template-columns: 1fr; /* En pantallas pequeñas, las pizzas estarán una debajo de otra */
+        grid-template-columns: 1fr; 
     }
 
     .pizza-item img {
-        height: 180px; /* Ajustamos la altura de la imagen en dispositivos pequeños */
+        height: 180px; 
     }
 }

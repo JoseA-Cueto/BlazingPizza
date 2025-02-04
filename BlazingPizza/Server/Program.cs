@@ -18,6 +18,7 @@ builder.Services.AddDbContext<PizzaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PizzaDb")));
 
 builder.Services.AddScoped<PizzaService>();
+builder.Services.AddScoped<CartService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
