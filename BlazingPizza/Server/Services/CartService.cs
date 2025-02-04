@@ -16,7 +16,7 @@ namespace BlazingPizza.Server.Services
 
         public async Task AddToCartAsync(CartItem item)
         {
-            // Buscar si el item ya está en el carrito
+            
             var existingItem = await _dbContext.CartItems
                 .FirstOrDefaultAsync(ci => ci.PizzaId == item.PizzaId);
 

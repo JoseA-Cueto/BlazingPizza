@@ -86,3 +86,25 @@ h3 {
         height: 180px; 
     }
 }
+.add-to-cart-btn {
+    background: #e67e22; /* Naranja vibrante */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px; /* Bordes redondeados */
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1em;
+}
+
+    .add-to-cart-btn:hover {
+        background: #d35400; /* Naranja más oscuro */
+        transform: scale(1.05); /* Efecto de escala al hover */
+    }
+
+    .add-to-cart-btn:active {
+        transform: scale(0.95); /* Efecto de clic */
+    }
