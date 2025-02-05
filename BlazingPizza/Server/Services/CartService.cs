@@ -45,9 +45,10 @@ namespace BlazingPizza.Server.Services
         public async Task<List<CartItem>> GetCartItemsAsync()
         {
             return await _dbContext.CartItems
-                .Include(ci => ci.Pizza)
+                .Include(ci => ci.Pizza) // <-- Esto garantiza que la pizza se cargue
                 .ToListAsync();
         }
+
 
         public async Task RemoveFromCartAsync(int pizzaId)
         {
