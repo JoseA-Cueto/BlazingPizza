@@ -1,0 +1,75 @@
+﻿@page "/cart"
+@using BlazingPizza.Shared.Models
+@inject HttpClient HttpClient
+
+<h3>🛒 Tu Carrito de Compras</h3>
+
+@if (cartItems == null || !cartItems.Any())
+{
+    <p>Tu carrito está vacío. 😞 <a href="/menu">Volver al menú</a></p>
+}
+else
+{
+    <div class="cart-container">
+        @foreach (var item in cartItems)
+        {
+            <div class="cart-item">
+                <img src="@item.Pizza.ImageUrl" alt="@item.Pizza.Name" />
+                <div class="cart-details">
+                    <h4>@item.Pizza.Name</h4>
+                    <p>Precio: $@item.Pizza.Price</p>
+                    <div class="quantity-controls">
+                        <button @onclick="() => UpdateQuantity(item.PizzaId, item.Quantity - 1)">➖</button>
+                        <span>@item.Quantity</span>
+                        <button @onclick="() => UpdateQuantity(item.PizzaId, item.Quantity + 1)">➕</button>
+                    </div>
+                    <p><strong>Total:</strong> $@(item.Pizza.Price * item.Quantity)</p>
+                    <button class="remove-btn" @onclick="() => RemoveFromCart(item.PizzaId)">🗑 Eliminar</button>
+                </div>
+            </div>
+        }
+
+        <div class="cart-total">
+            <h3>Total del Pedido: $@cartItems.Sum(i => i.Pizza.Price * i.Quantity)</h3>
+            <button class="checkout-btn">Proceder al Pago</button>
+        </div>
+    </div>
+}
+
+@code {
+    private List<CartItem>? cartItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            cartItems = await HttpClient.GetFromJsonAsync<List<CartItem>>("api/cart");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al obtener el carrito: {ex.Message}");
+        }
+    }
+
+    private async Task UpdateQuantity(int pizzaId, int newQuantity)
+    {
+        if (newQuantity < 1)
+        {
+            await RemoveFromCart(pizzaId);
+            return;
+        }
+
+        var item = cartItems.FirstOrDefault(i => i.PizzaId == pizzaId);
+        if (item != null)
+        {
+            item.Quantity = newQuantity;
+            await HttpClient.PostAsJsonAsync("api/cart/add", item);
+        }
+    }
+
+    private async Task RemoveFromCart(int pizzaId)
+    {
+        await HttpClient.DeleteAsync($"api/cart/{pizzaId}");
+        cartItems.RemoveAll(i => i.PizzaId == pizzaId);
+    }
+}
