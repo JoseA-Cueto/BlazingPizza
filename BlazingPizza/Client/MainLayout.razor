@@ -1,5 +1,38 @@
 ﻿@inherits LayoutComponentBase
 
-<main>
+<div class="nav-bar">
+    <a href="/menu">🍕 Menú</a>
+    <a href="/cart">🛒 Carrito</a>
+    <a href="/about">ℹ️ Acerca de</a>
+</div>
+
+<div class="page-content">
     @Body
-</main>
+</div>
+
+
+<style>
+    .nav-bar {
+        background: #e67e22;
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-bar a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .nav-bar a:hover {
+        text-decoration: underline;
+    }
+
+    .page-content {
+        padding: 20px;
+    }
+</style>
+
