@@ -17,7 +17,10 @@ namespace BlazingPizza.Server.Data
             modelBuilder.Entity<CartItem>()
                 .HasOne(ci => ci.Pizza) 
                 .WithMany() 
-                .HasForeignKey(ci => ci.PizzaId); 
+                .HasForeignKey(ci => ci.PizzaId);
+          
+            modelBuilder.Entity<CartItem>()
+                .Ignore(ci => ci.Pizza);
         }
     }
 }
