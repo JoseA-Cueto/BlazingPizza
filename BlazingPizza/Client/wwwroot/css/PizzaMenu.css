@@ -1,12 +1,12 @@
 ﻿/* General container for the pizza menu */
 .pizza-menu {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Ajustar para que las cartas no se desborden */
     gap: 20px;
     padding: 20px;
-    background: linear-gradient(to top, #f39c12, #f1c40f); 
+    background: linear-gradient(to top, #f39c12, #f1c40f);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 30px;
 }
 
@@ -15,28 +15,30 @@
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     padding: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    justify-content: flex-start; /* Ajustar el contenido al inicio */
+    aspect-ratio: 1 / 1; /* Mantener un aspecto cuadrado */
+    height: auto; /* Elimina la restricción de altura fija */
+    position: relative;
 }
 
     /* Hover effect */
     .pizza-item:hover {
-        transform: translateY(-5px); 
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15); 
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
     }
 
     /* Pizza image */
     .pizza-item img {
         width: 100%;
-        height: 200px; 
-        object-fit: cover;
+        height: 100%; /* Usamos la altura completa del contenedor */
+        object-fit: cover; /* Mantener la proporción de la imagen */
         border-bottom: 1px solid #ddd;
     }
 
@@ -60,32 +62,7 @@
         font-size: 1.1em;
     }
 
-/* Background for the page */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to top, #f39c12, #f1c40f); 
-}
-
-/* Header */
-h3 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-top: 20px;
-    color: #2c3e50; 
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .pizza-menu {
-        grid-template-columns: 1fr; 
-    }
-
-    .pizza-item img {
-        height: 180px; 
-    }
-}
+/* Button for adding to cart */
 .add-to-cart-btn {
     background: #e67e22; /* Naranja vibrante */
     color: white;
@@ -98,6 +75,7 @@ h3 {
     margin-top: 10px;
     width: 100%;
     font-size: 1em;
+    max-width: 150px; /* Establecer un límite para el ancho del botón */
 }
 
     .add-to-cart-btn:hover {
@@ -108,3 +86,30 @@ h3 {
     .add-to-cart-btn:active {
         transform: scale(0.95); /* Efecto de clic */
     }
+
+/* Background for the page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to top, #f39c12, #f1c40f);
+}
+
+/* Header */
+h3 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-top: 20px;
+    color: #2c3e50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pizza-menu {
+        grid-template-columns: 1fr;
+    }
+
+    .pizza-item img {
+        height: 180px;
+    }
+}
