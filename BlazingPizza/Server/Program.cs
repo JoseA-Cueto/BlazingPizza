@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddDbContext<PizzaDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PizzaDb")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BlazingPizza")));
 
 builder.Services.AddScoped<PizzaService>();
 builder.Services.AddScoped<CartService>();
